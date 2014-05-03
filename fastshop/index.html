@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<title></title>
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+	<link href="style.css" rel="stylesheet">
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
+	<script type="text/javascript" src="angular-dragdrop/draganddrop.js"></script>
+	<script type="text/javascript" src="app.js"></script>
+</head>
+
+<body ng-app="computerlist" ng-controller="addlist">
+				
+<div class="wrapper" >
+
+	<header class="header">
+		<div class="logo">
+			<span class="first">fast</span><span class="second">Shop</span>
+		</div>
+	</header><!-- .header-->
+					
+	<div class="middle">		
+		<div class="container">
+			<main class="content">
+				<ul class="items">
+					<li ng-repeat="computer in computer track by $index" ng-dblclick="add_busket(this)" ui-draggable="true" drag="computer">
+							<img ng-src="{{computer.img}}">
+			    			<div class="item-name">{{computer.name}}</div>
+			    			<div class="item-price">{{computer.price}}</div>
+					</li>
+				</ul>
+			</main><!-- .content -->
+		</div><!-- .container-->
+
+		<aside class="right-sidebar">
+			<div class="basket">
+				<div class="basket-title">Корзина</div>
+				<ul class="basket-content" ui-on-Drop="onDrop($event,$data,bucket_computer)">
+					<li ng-repeat="bucket_computer in bucket_computer track by $index"  ui-draggable="true" drag="bucket_computer" on-drop-success="dropSuccessHandler(this)" ng-click="add_view(this)">
+						<img ng-src="{{bucket_computer.img}}" width="20%">
+			    		<div class="basket-name">{{bucket_computer.name}}</div>
+			    		<div class="basket-price">{{bucket_computer.price}}</div>
+					</li>
+				</ul>
+				<div class="basket-title">Checksum</div>
+				<div class="basket-price">{{price}} руб.</div>
+			</div>
+		</aside><!-- .right-sidebar -->
+
+	</div><!-- .middle-->
+
+</div><!-- .wrapper -->
+
+</body>
+</html>
